@@ -46,3 +46,7 @@ class TaskForm(forms.ModelForm):
             'task_types': 'Тип задачи',
             'completion_date': 'Выполнить до'
         }
+
+
+class SearchForm(forms.Form):
+    search = forms.CharField(max_length=20, required=False, label='Найти')
