@@ -1,10 +1,18 @@
 from django.db import models
 from django.utils import timezone
+from webapp.models.projects import Project
 
 # Create your models here.
 
 
 class Task(models.Model):
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.RESTRICT, 
+        null=False,
+        blank=False,
+        default=1
+        )
     title = models.CharField(
         max_length=200,
         null=False,
