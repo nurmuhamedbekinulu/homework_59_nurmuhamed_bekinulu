@@ -1,0 +1,35 @@
+{% extends 'projects/base.html' %}
+{% block title %}Project{% endblock %}
+{% block menu %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'project_update' project.pk %}">Редактировать Задачу</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'project_delete' project.pk %}">Удалить Задачу</a>
+</li>
+{% endblock %}
+{% block content%}
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-body">
+            <h5 class="card-title">Название: {{ project.title }}</h5>
+            <p>Описание: {{ project.description|linebreaks }}</p>
+            <p>Дата начала: {{ project.start_date }}</p>
+            <p>Дата окончания: {{ project.completion_date }}</p>
+        </div>
+    </div>
+</div>
+<hr/>
+
+<h3>Tasks:</h3>
+<div class="task-list">
+    {% for task in project.tasks.all %}
+        <div class="task">
+            <p>{{ task.title }}</p>
+            <p>{{ task.description }}</p>
+        </div>
+    {% empty %}
+        <p>No tasks yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}
